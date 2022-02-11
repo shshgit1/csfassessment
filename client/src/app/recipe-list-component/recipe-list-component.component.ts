@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { RecipeSum } from '../models';
+import { RecipeServiceService } from '../recipe-service.service';
+
 @Component({
   selector: 'app-recipe-list-component',
   templateUrl: './recipe-list-component.component.html',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeListComponentComponent implements OnInit {
 
-  constructor() { }
+  listOfRecipes=new Map();
+  recipes : RecipeSum[] = []
 
-  ngOnInit(): void {
+  constructor(private service:RecipeServiceService) { }
+
+
+ngOnInit():void {
+  this.service.getAllRecipes()
+  .then (r => this.recipes = r)
+  .catch(error => {
+    alert('error');
+
+  })
+
   }
 
 }

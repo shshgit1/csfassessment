@@ -1,1 +1,20 @@
 <p>recipe-detail-component works!</p>
+<!--
+  <div *ngFor="let x of ReceipeDetMap|keyvalue">
+<h2>{{x.value.title}}</h2><br><br>
+  <img src={{x.value.image}}><br><br>
+  <h2>Ingredients</h2>
+  {{x.value.ingredients}}<br>
+  {{x.value.instruction}}<br>
+</div>
+-->
+<div *ngFor="let x of Recdet">
+  {{x.title}}<br>
+  <img src={{x.image}}><br>
+  {{x.ingredients}}<br>
+  {{x.instruction}}<br>
+</div>
+
+
+<p></p>
+<button type="submit" [routerLink]="['']">Back</button>

@@ -1,1 +1,8 @@
 <p>recipe-list-component works!</p>
+<p>
+  <div *ngFor="let x of recipes">
+    <a [routerLink]="['recipe',x.id]">{{x.title}}</a>
+  </div>
+<p>
+  <button type="submit" [routerLink]="['add']">Add</button>
+</p>

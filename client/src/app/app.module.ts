@@ -7,6 +7,17 @@ import { RecipeListComponentComponent } from './recipe-list-component/recipe-lis
 import { RecipeDetailComponentComponent } from './recipe-detail-component/recipe-detail-component.component';
 import { RecipeAddComponentComponent } from './recipe-add-component/recipe-add-component.component';
 import { RecipeServiceService } from './recipe-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+
+const AppRoutes:Routes=[
+  { path: '', component:RecipeListComponentComponent},
+  { path: 'recipe/:recipeId', component:RecipeDetailComponentComponent},
+  {path: 'add', component:RecipeAddComponentComponent},
+  { path: "**", redirectTo: '/', pathMatch: 'full' }
+]
+
 
 @NgModule({
   declarations: [
@@ -17,7 +28,11 @@ import { RecipeServiceService } from './recipe-service.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [RecipeServiceService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeDetails } from '../models';
 import { RecipeServiceService } from '../recipe-service.service';
 
@@ -14,13 +14,17 @@ export class RecipeDetailComponentComponent implements OnInit {
   IdOfRecipe:any;
 
 
-  constructor(private aroute:ActivatedRoute, private service:RecipeServiceService) { }
+  constructor(private aroute:ActivatedRoute, private service:RecipeServiceService, private router:Router) { }
 
   ngOnInit(): void {
     this.IdOfRecipe = this.aroute.snapshot.params['recipeId']
     this.service.getRecipe(this.IdOfRecipe)
     .then (r => this.Recdet = r)
-    .catch(error => {console.log(error);
-    })
+    .catch(error => {alert("no recipe found");
+    this.router.navigate([''])
+  })
 
-  }}
+
+  }
+
+}

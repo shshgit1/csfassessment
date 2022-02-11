@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +28,13 @@ public class RecipeRestController{
     Optional<Recipe> SingleRecipe = RecipeSvc.getRecipeById(recipe_id);
     
     return ResponseEntity.ok(SingleRecipe);
-            
     }
+
+    @PostMapping(path="recipe", consumes=MediaType.APPLICATION_JSON_VALUE)
+    public void postRecipe(@RequestBody Recipe Recipe) {
+
+			this.RecipeSvc.addRecipe(Recipe);
+			
+	}
 
 }

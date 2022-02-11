@@ -1,1 +1,18 @@
-<p>recipe-add-component works!</p>
+<form [formGroup]="groupedform">
+<p>
+Title: <input type="text" formControlName="Title" placeholder="minimum of 3 chars"> <br>
+</p>
+<p>
+Image (url): <input type="text"formControlName="Image"><br>
+</p>
+<p>
+Instructions: <textarea type="text" formControlName="Instruction" placeholder="minimum of 3 chars"></textarea><br>
+</p>
+<p>
+Ingredients: <input type="text" formControlName="Ingredients" placeholder="minimum of 3 chars"><br>
+</p>
+<button type="submit" [routerLink]="['']">Back</button>
+
+<button type="submit" [disabled]="groupedform.invalid" (click)="onsubmit()">Add recipe</button>
+
+</form>

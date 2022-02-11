@@ -4,7 +4,12 @@
   <h2>{{Recdet.title}}</h2><br>
   <img src={{Recdet.image}}><br>
   <h2>ingredients</h2>
-  {{Recdet.ingredients}}<br>
+
+<ol>
+  <li *ngFor="let y of Recdet.ingredients">
+  {{y}}
+  </li>
+</ol>
 
   <h2>instructions</h2>
   {{Recdet.instruction}}<br>

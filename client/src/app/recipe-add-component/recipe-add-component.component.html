@@ -9,8 +9,17 @@ Image (url): <input type="text"formControlName="Image"><br>
 Instructions: <textarea type="text" formControlName="Instruction" placeholder="minimum of 3 chars"></textarea><br>
 </p>
 <p>
-Ingredients: <input type="text" formControlName="Ingredients" placeholder="minimum of 3 chars"><br>
-</p>
+
+  <div formArrayName="ingredients">
+
+      <p>Ingredients</p>
+      <button type="button" (click)="addFormControl()">+</button>
+     <div *ngFor="let a of ingredients.controls; let i = index">
+      <input type="text" [formControl]="$any(a)">
+      <button type="button" (click)="removeFormControl(i)">x</button>
+    </div>
+  </div>
+
 <button type="submit" [routerLink]="['']">Back</button>
 
 <button type="submit" [disabled]="groupedform.invalid" (click)="onsubmit()">Add recipe</button>

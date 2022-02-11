@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecipeModel } from '../models';
 
@@ -16,7 +16,7 @@ export class RecipeAddComponentComponent implements OnInit {
   title=new FormControl('',[Validators.minLength(3),Validators.required])
   image=new FormControl('',[Validators.required])
   instruction=new FormControl('',[Validators.minLength(3),Validators.required])
-  ingredients=new FormControl('',[Validators.minLength(3),Validators.required])
+  ingredients=new FormArray([],[Validators.required,Validators.min(1)])
 
   constructor(private fb:FormBuilder, private rout:Router, private http:HttpClient) {
     this.groupedform=this.fb.group({
@@ -31,6 +31,12 @@ export class RecipeAddComponentComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  addFormControl(){
+    this.ingredients.push(this.fb.control('',[Validators.required,Validators.minLength(3)]))
+  }
+  removeFormControl(i:number){
+    this.ingredients.removeAt(i)
+  }
   onsubmit(){
     let newRecipe=new RecipeModel(
       this.groupedform.value.title,
@@ -39,8 +45,8 @@ export class RecipeAddComponentComponent implements OnInit {
       this.groupedform.value.instruction)
 
 
-      this.http.post('http://localhost:8080/api/recipe',newRecipe)
-
+      //this.http.post('http://localhost:8080/api/recipe',newRecipe)
+      this.http.post('/api/recipe',newRecipe)
     this.rout.navigate([''])
   }
 

@@ -12,7 +12,8 @@ export class RecipeServiceService {
 
   getAllRecipes():Promise<RecipeSum[]>{
     return lastValueFrom(
-      this.http.get<RecipeSum[]>('http://localhost:8080/api/recipes')
+      //this.http.get<RecipeSum[]>('http://localhost:8080/api/recipes')
+      this.http.get<RecipeSum[]>('/api/recipes')
     ).then (r =>
       r.map(rz => ({id : rz.id, title: rz.title} as RecipeSum)))
 
@@ -20,8 +21,8 @@ export class RecipeServiceService {
 
     getRecipe(recipeId:string):Promise<RecipeDetails>{
 
-      let url='http://localhost:8080/api/recipe'+'/'+recipeId;
-
+    //  let url='http://localhost:8080/api/recipe'+'/'+recipeId;
+    let url='/api/recipe'+'/'+recipeId;
       return lastValueFrom(
         this.http.get<RecipeDetails>(url)
       ).then (rd => ({id: rd.id, title: rd.title,

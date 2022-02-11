@@ -12,7 +12,7 @@ import { RecipeServiceService } from '../recipe-service.service';
 export class RecipeDetailComponentComponent implements OnInit {
   Recdet!:RecipeDetails;
   IdOfRecipe:any;
-  ReceipeDetMap=new Map();
+
 
   constructor(private aroute:ActivatedRoute, private service:RecipeServiceService) { }
 
@@ -22,13 +22,5 @@ export class RecipeDetailComponentComponent implements OnInit {
     .then (r => this.Recdet = r)
     .catch(error => {console.log(error);
     })
-
-/*     this.IdOfRecipe = this.aroute.snapshot.params['recipeId']
-    this.service.getRecipe(this.IdOfRecipe)
-    .then (r => this.ReceipeDetMap.set(this.IdOfRecipe,r))
-    .catch(error => {alert('error');
-    })
-    console.log(this.ReceipeDetMap)
-} */
 
   }}

@@ -6,7 +6,8 @@ export interface RecipeSum {
 export interface RecipeDetails{
   id: string;
   title: string;
-  ingredients:string;
-  instruction:string;
-  image:string;
+  image: string;
+  ingredients: string;
+  instruction: string;
+
 }

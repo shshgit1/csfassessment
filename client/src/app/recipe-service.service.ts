@@ -25,7 +25,7 @@ export class RecipeServiceService {
       return lastValueFrom(
         this.http.get<RecipeDetails>(url)
       ).then (rd => ({id: rd.id, title: rd.title,
-        ingredients: rd.ingredients, instruction: rd.instruction } as RecipeDetails))
+        ingredients: rd.ingredients, instruction: rd.instruction, image:rd.image } as RecipeDetails))
      /*  return lastValueFrom(
         this.http.get<RecipeDetails>(url))
         .then (rd => ({

@@ -18,15 +18,23 @@ export class RecipeServiceService {
 
     }
 
-    getRecipe(recipeId:any):Promise<RecipeDetails[]>{
-      return lastValueFrom(
-        this.http.get<RecipeDetails[]>('http://localhost:8080/api/recipes')
-        ).then (r => r.map
-          (rd =>
-        ({id:rd.id, title :rd.title,
-          ingredients:rd.ingredients,
-          instruction:rd.instruction,
-          image:rd.image} as RecipeDetails)))
-    }
-}
+    getRecipe(recipeId:string):Promise<RecipeDetails>{
 
+      let url='http://localhost:8080/api/recipe'+'/'+recipeId;
+
+      return lastValueFrom(
+        this.http.get<RecipeDetails>(url)
+      ).then (rd => ({id: rd.id, title: rd.title,
+        ingredients: rd.ingredients, instruction: rd.instruction } as RecipeDetails))
+     /*  return lastValueFrom(
+        this.http.get<RecipeDetails>(url))
+        .then (rd => ({
+          id:rd.id,
+          title :rd.title,
+            ingredients:rd.ingredients,
+            instruction:rd.instruction,
+            image:rd.image }
+            as RecipeDetails))
+          }  */
+} //end getrecipe
+}

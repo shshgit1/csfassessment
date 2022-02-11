@@ -10,7 +10,7 @@ import { RecipeServiceService } from '../recipe-service.service';
   styleUrls: ['./recipe-detail-component.component.css']
 })
 export class RecipeDetailComponentComponent implements OnInit {
-  Recdet:RecipeDetails[]=[];
+  Recdet!:RecipeDetails;
   IdOfRecipe:any;
   ReceipeDetMap=new Map();
 
@@ -20,7 +20,7 @@ export class RecipeDetailComponentComponent implements OnInit {
     this.IdOfRecipe = this.aroute.snapshot.params['recipeId']
     this.service.getRecipe(this.IdOfRecipe)
     .then (r => this.Recdet = r)
-    .catch(error => {alert('error');
+    .catch(error => {console.log(error);
     })
 
 /*     this.IdOfRecipe = this.aroute.snapshot.params['recipeId']

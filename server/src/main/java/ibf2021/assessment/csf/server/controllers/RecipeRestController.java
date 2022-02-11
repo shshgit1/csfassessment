@@ -23,9 +23,9 @@ public class RecipeRestController{
 
     @GetMapping(path="recipe/{recipe_id}")
     public ResponseEntity<Optional<Recipe>> getRecipeDetail(@PathVariable String recipe_id){
-    Optional<Recipe> allRecipes = RecipeSvc.getRecipeById(recipe_id);
-
-    return ResponseEntity.ok(allRecipes);
+    Optional<Recipe> SingleRecipe = RecipeSvc.getRecipeById(recipe_id);
+    
+    return ResponseEntity.ok(SingleRecipe);
             
     }
 
